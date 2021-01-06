@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getPdf demo</title>
+<style type="text/css">
+* {
+	box-sizing: border-box;
+}
+
+.pc {
+	float: left;
+	width: 33.333333%;
+	padding: 10px;
+}
+
+.pc object, .pc iframe, .pc embed {
+	width: 100%;
+	height: 600px;
+	border: 1px solid black;
+}
+
+.pc button {
+	width: 100%;
+	height: 50px;
+}
+</style>
+</head>
+<body>
+	<div class="pc">
+		<!-- classid="CLSID:CA8A9780-280D-11CF-A24D-444553540000" -->
+		<!-- classid="CLSID:CA8A9780-280D-11CF-A24D-444553540000" -->
+		<object id="pdfObj" name="pdfObj" data="https://www.dreamhotels.com/d/cochin/media/PDF/TEST_PDF_FILE.pdf"> </object>
+		<br />
+		<button type="button" onclick="print('pdfObj');">Object Print</button>
+	</div>
+	<div class="pc">
+		<iframe id="pdfIf" src="https://www.dreamhotels.com/d/cochin/media/PDF/TEST_PDF_FILE.pdf"></iframe>
+		<br />
+		<button type="button" onclick="print('pdfIf');">iframe Print</button>
+	</div>
+	<div class="pc">
+		<embed id="pdfEm" src="demo/getPdf"></embed>
+		<br />
+		<button type="button" onclick="print('pdfEm');">embed Print</button>
+	</div>
+	<div>
+		<button type="button" onclick="openWindow();">open new window</button>
+	</div>
+</body>
+<script type="text/javascript">
+	function isIE() {
+		if (!!window.ActiveXObject || "ActiveXObject" in window) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function print(id) {
+		var object = document.getElementById(id);
+		console.log("print: " + id);
+		if (isIE()) {
+			object.print();
+		} else {
+			object.contentWindow.print();
+		}
+	}
+	function openWindow() {
+		window.open('demo/getPdf');
+	}
+</script>
+</html>
